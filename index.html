@@ -2,29 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Global Weather Report</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background: #f0f8ff;
+    }
+    #weather-container {
+      margin-top: 30px;
+    }
+    .ad-container {
+      margin: 20px auto;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🌍 Global Weather Report</h1>
-    <input type="text" id="cityInput" placeholder="Enter city or region" />
-    <button onclick="getWeather()">🌤️ Get Weather</button>
 
-    <div class="weather" id="weatherBox" style="display: none;">
-      <h2 id="location"></h2>
-      <p id="time"></p>
-      <h3 id="temp"></h3>
-      <p id="desc"></p>
-      <div class="details">
-        <p>💨 Wind: <span id="wind"></span></p>
-        <p>💧 Humidity: <span id="humidity"></span></p>
-        <p>🌫️ Visibility: <span id="visibility"></span></p>
-        <p>📈 Pressure: <span id="pressure"></span></p>
-      </div>
-    </div>
+  <h1>Weather Report</h1>
+  <input type="text" id="cityInput" placeholder="Enter city name" />
+  <button onclick="getWeather()">Get Weather</button>
+
+  <div id="weather-container"></div>
+
+  <!-- 🔥 Adsterra Ad Code Starts Here -->
+  <div class="ad-container">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '476a4f5a739b5f0c13caeb4efd7ba1ae',
+        'format' : 'iframe',
+        'height' : 250,
+        'width' : 300,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/476a4f5a739b5f0c13caeb4efd7ba1ae/invoke.js"></script>
   </div>
-  <script src="script.js"></script>
+  <!-- 🔥 Adsterra Ad Code Ends Here -->
+
+  <script>
+    async function getWeather() {
+      const city = document.getElementById("cityInput").value;
+      const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY'; // Replace this
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("City not found");
+
+        const data = await response.json();
+        document.getElementById("weather-container").innerHTML =
+          `<h2>${data.name}</h2>
+           <p>🌡️ Temp: ${data.main.temp}°C</p>
+           <p>☁️ Weather: ${data.weather[0].description}</p>`;
+      } catch (error) {
+        alert("City not found or API error");
+      }
+    }
+  </script>
+
 </body>
 </html>
