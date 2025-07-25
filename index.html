@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Global Weather Report</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🌍 Global Weather Report</h1>
+    <input type="text" id="cityInput" placeholder="Enter city or region" />
+    <button onclick="getWeather()">🌤️ Get Weather</button>
+
+    <div class="weather" id="weatherBox" style="display: none;">
+      <h2 id="location"></h2>
+      <p id="time"></p>
+      <h3 id="temp"></h3>
+      <p id="desc"></p>
+      <div class="details">
+        <p>💨 Wind: <span id="wind"></span></p>
+        <p>💧 Humidity: <span id="humidity"></span></p>
+        <p>🌫️ Visibility: <span id="visibility"></span></p>
+        <p>📈 Pressure: <span id="pressure"></span></p>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
